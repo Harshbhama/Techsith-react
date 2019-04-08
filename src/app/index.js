@@ -18,7 +18,8 @@ class App extends React.Component{
     return(
       <div>
           <Parent
-          dosomething = {this.onChange.bind(this,"NEW TITLE")} title = {this.state.title}
+          changeworld = {this.onChange.bind(this,"Change world")} title = {this.state.title}
+          sameworld = {this.onChange.bind(this, "Same world")} title = {this.state.title}
           />
 
       </div>

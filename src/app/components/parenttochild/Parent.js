@@ -4,7 +4,8 @@ import { Child } from "./Child"
 export const Parent = (props) => {
   return(
     <div>
-      <Child {...props}/>
+      <Child {...props} dosomething = {props.changeworld} />
+      <Child {...props} dosomething = {props.sameworld} />
     </div>
   )
 }
