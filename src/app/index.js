@@ -54,6 +54,25 @@ class App extends React.Component{
         users:users
       })
     }
+
+    changeUserName(id, e){
+      const index = this.state.users.findIndex((user) => {
+          return user.id === id
+      })
+
+      const user = Object.assign({}, this.state.users[index])
+
+      user.name = e.target.value
+
+      const users = Object.assign([], this.state.users)
+
+      users[index] = user
+      this.setState({
+          users:users
+      })
+
+
+    }
   render(){
     return(
 
@@ -65,7 +84,9 @@ class App extends React.Component{
                       key = {user.id}
                       age = {user.age}
                       delevent = {this.onDelete.bind(this, index)}
-                      >{user.name}</User>)
+                      changeEvent = {this.changeUserName.bind(this, user.id)}
+                      >{user.name}
+                      </User>)
                   })
                 }
               </ul>
