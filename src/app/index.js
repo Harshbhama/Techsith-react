@@ -2,6 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 
 import { User } from "./components/User"
+import UniqueId from 'react-html-id'
 
 // import { Parent } from "./components/parenttochild/Parent"
 //
@@ -30,13 +31,21 @@ import { User } from "./components/User"
 // }
 class App extends React.Component{
 
-    state = {
-        users: [
-          {name: 'abc', age: 20},
-          {name: 'cde', age: 21},
-          {name: 'efg', age: 22}
-        ]
+    constructor(){
+      super()
+      UniqueId.enableUniqueIds(this)
+      this.state = {
+          users: [
+            {id:this.nextUniqueId(), name: 'abc', age: 20},
+            {id:this.nextUniqueId(), name: 'cde', age: 21},
+            {id:this.nextUniqueId(), name: 'efg', age: 22}
+          ]
+      }
+      console.log(this.state)
+
     }
+
+
 
     onDelete(index, e){
       const users = Object.assign([], this.state.users)
@@ -52,7 +61,9 @@ class App extends React.Component{
               <ul>
                 {
                   this.state.users.map((user, index) => {
-                    return(<User age = {user.age}
+                    return(<User
+                      key = {user.id}
+                      age = {user.age}
                       delevent = {this.onDelete.bind(this, index)}
                       >{user.name}</User>)
                   })
